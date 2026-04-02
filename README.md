@@ -61,25 +61,28 @@ python -m src.project
 - **Other sources:** Project Gutenberg (https://www.gutenberg.org) for the dataset
 
 ## Design note (150–250 words)
-I chose *Alice's Adventures in Wonderland* because it is a well-known classic with
-a wide range of vocabulary — short common words like "the" and "said" appear
-hundreds of times, while unusual words like "chrysalis" or "waistcoat" appear only
-once or twice. This contrast makes the frequency analysis genuinely interesting to
-look at.
+I chose *The Origin and Development of the Moral Ideas* by Edward Westermarck because
+it is a public-domain academic text with rich, specialised vocabulary. Words like
+"retributive", "disinterestedness", and "civilisation" appear repeatedly, while rare
+terms like "extenuation" or "conations" appear only once or twice. This contrast
+makes both the frequency analysis and the longest-unique-word insight interesting to
+examine.
 
 For the design, I kept each function small and focused on one job. `normalize_text`
 only cleans; `tokenize` only splits; `count_words` only counts. This made each
 function easy to test independently, which the project brief emphasised. The
 hardest part was deciding what counts as "normalization." I chose to remove all
-punctuation and lowercase everything, which means hyphenated words like "rabbit-hole"
-become two tokens ("rabbithole" with `translate` actually joins them — so I verified
-this and it is fine for this project's purposes).
+punctuation and lowercase everything, so words like "Moral" and "moral" are treated
+the same. One edge case I noticed is that hyphenated words like "self-feeling" become
+one long token after punctuation removal ("selffeeling"), which is acceptable for
+this project's scope.
 
-The extra insight I chose is the longest word that appears only once. I found this
-more interesting than simple averages because it reveals rare, distinctive vocabulary.
-For Alice, that word tends to be something like "disappointment" or "encouragingly."
+The extra insight I chose is the longest word that appears only once. For an academic
+philosophy text, this tends to reveal rare technical vocabulary that the author uses
+only in one specific argument. I found this more interesting than simple averages
+because it gives a flavour of the book's specialised language.
 
 One improvement I would make next is to strip common "stop words" like "the", "a",
-"of", "and" from the top-N results, since they dominate the frequency list and are
-not very informative. A small stop-word list from the standard library's `re` module
-would be enough.
+"of", and "and" from the top-N results, since they dominate the frequency list and
+are not very informative. A small stop-word set defined in the module would be enough
+to make the top-N output much more meaningful.

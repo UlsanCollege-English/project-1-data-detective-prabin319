@@ -1,6 +1,6 @@
 """Project 1 starter: Data Detective.
 
-Dataset: The Origin and Development of the Moral Ideas* by Edward Westermarck (Public Domain)
+Dataset:The origin and development of the moral ideas by Edward Westermarck
 """
 
 from __future__ import annotations
